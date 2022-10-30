@@ -7,6 +7,32 @@
         <link rel="stylesheet" type="text/css" href="main.css" />
     </head>
     <body>
-        <h1>Today's Tasks</h1>
+        <div id="mainFrame">
+            <h1>Today's Tasks</h1>
+            <div id="tasks">
+                <div className="task">
+                    Task 1
+                    <button className="done">Done</button>
+                    <button className="delete">Delete</button>
+                </div>
+                <div className="task">
+                    Task 2
+                    <button className="done">Done</button>
+                    <button className="delete">Delete</button>
+                </div>
+                <div className="task">
+                    Task 3
+                    <button className="done">Done</button>
+                    <button className="delete">Delete</button>
+                </div>
+            </div>
+            <div id="control">
+                <form>
+                    <input type="text" placeholder="submit task">
+                    <input type="submit">
+                </form>
+            </div>
+        </div>
+
     </body>
 </html>
