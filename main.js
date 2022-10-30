@@ -1,11 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
     
-    // Setting up local storage:
     let divsOfTasks = []; // innerHTML text of tasks
+    // Setting up local storage:
     if (JSON.parse(localStorage.getItem("divsOfTasks"))) { // if there are tasks from previous "session", then load them:
         const tasks = JSON.parse(localStorage.getItem("divsOfTasks"));
+
         for (let task of tasks) {
             createTaskDiv(task);
+            divsOfTasks.push(task);
         }
     }
 
