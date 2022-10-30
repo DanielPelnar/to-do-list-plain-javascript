@@ -1,4 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
+    
+    // Setting up local storage:
+    let divsOfTasks = []; // innerHTML text of tasks
+    if (JSON.parse(localStorage.getItem("divsOfTasks"))) { // if there are tasks from previous "session", then load them:
+        const tasks = JSON.parse(localStorage.getItem("divsOfTasks"));
+        for (let task of tasks) {
+            createTaskDiv(task);
+        }
+    }
 
     // By default, the submit button is disabled, so the user can't submit an empty string:
     document.querySelector("#submit").disabled = true;
@@ -16,35 +25,52 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector("form").onsubmit = function() {
         const submittedTask = document.querySelector("#input").value;
         // console.log(submittedTask);
-        const taskDiv = document.createElement("div");
-        taskDiv.className = "task";
-        taskDiv.innerHTML = submittedTask;
-        const deleteButton = document.createElement("button");
-        const completeButton = document.createElement("button");
-        deleteButton.className = "delete";
-        completeButton.className = "complete";
-        deleteButton.innerHTML = "Delete Task";
-        completeButton.innerHTML = "Complete";
-        taskDiv.append(deleteButton);
-        taskDiv.append(completeButton);
-        document.querySelector("#tasks").append(taskDiv);
+
+        createTaskDiv(submittedTask);
+
         document.querySelector("form").reset();
-        console.log(taskDiv);
+    
+        // local storage:
+        divsOfTasks.push(submittedTask);
+        localStorage.setItem("divsOfTasks", JSON.stringify(divsOfTasks));
+        //localStorage.setItem("textTask", submittedTask);
+
         return false; 
     };
 
-    // Deleting and Completing tasks:
+    // Deleting/Completing tasks:
     document.addEventListener("click", function(event) {
         const clickedElement = event.target;
         if (clickedElement.className === "delete") { // If the "delete" button was clicked:
-            clickedElement.parentElement.remove();   // remove the task's div, which deleted the whole task.
-        }
+            
+            // Delete from local storage:
+            const removeTask = clickedElement.parentElement.innerText;
+            const size = removeTask.length
+            divsOfTasks = arrayRemove(divsOfTasks, removeTask.slice(0, size - 11)); // "Delete Task".length === 11
+            localStorage.setItem("divsOfTasks", JSON.stringify(divsOfTasks));
 
-        if (clickedElement.className === "complete") { // If the "complete" button was clicked:
-            clickedElement.parentElement.style.textDecoration = "line-through";   // Cross the text of the task
+            // remove the task's div, which deleted the whole task:
+            clickedElement.parentElement.remove();   
         }
     });
 
+    // Creates task (task div and all inner tags):
+    function createTaskDiv(innerText) {
+        const taskDiv = document.createElement("div");
+        taskDiv.className = "task";
+        taskDiv.innerHTML = innerText;
+        const deleteButton = document.createElement("button");
+        deleteButton.className = "delete";
+        deleteButton.innerHTML = "Delete Task";
+        taskDiv.append(deleteButton);
+        document.querySelector("#tasks").append(taskDiv);
+    }
 
-
+    // helper function used to remove an element from an array by name:
+    function arrayRemove(arr, element) {
+        return arr.filter(function(x){
+            return x != element;
+        });
+    }
+      
 });
