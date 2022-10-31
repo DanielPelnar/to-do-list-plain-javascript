@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Setting up local storage:
     if (JSON.parse(localStorage.getItem("divsOfTasks"))) { // if there are tasks from previous "session", then load them:
         const tasks = JSON.parse(localStorage.getItem("divsOfTasks"));
-
         for (let task of tasks) {
             createTaskDiv(task);
             divsOfTasks.push(task);
@@ -26,7 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Adding task:
     document.querySelector("form").onsubmit = function() {
         const submittedTask = document.querySelector("#input").value;
-        // console.log(submittedTask);
 
         createTaskDiv(submittedTask);
 
@@ -35,23 +33,21 @@ document.addEventListener("DOMContentLoaded", () => {
         // local storage:
         divsOfTasks.push(submittedTask);
         localStorage.setItem("divsOfTasks", JSON.stringify(divsOfTasks));
-        //localStorage.setItem("textTask", submittedTask);
 
         return false; 
     };
 
-    // Deleting/Completing tasks:
+    // Deleting (Completing) tasks:
     document.addEventListener("click", function(event) {
         const clickedElement = event.target;
         if (clickedElement.className === "delete") { // If the "delete" button was clicked:
-            
-            // Delete from local storage:
+            // "Delete" from local storage:
             const removeTask = clickedElement.parentElement.innerText;
             const size = removeTask.length
             divsOfTasks = arrayRemove(divsOfTasks, removeTask.slice(0, size - 11)); // "Delete Task".length === 11
             localStorage.setItem("divsOfTasks", JSON.stringify(divsOfTasks));
 
-            // remove the task's div, which deleted the whole task:
+            // remove the task's div, which deletes the whole task:
             clickedElement.parentElement.remove();   
         }
     });
@@ -68,11 +64,10 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector("#tasks").append(taskDiv);
     }
 
-    // helper function used to remove an element from an array by name:
+    // Helper function used to remove an element from an array by name:
     function arrayRemove(arr, element) {
         return arr.filter(function(x){
             return x != element;
         });
-    }
-      
+    }   
 });
