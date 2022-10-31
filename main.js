@@ -44,7 +44,13 @@ document.addEventListener("DOMContentLoaded", () => {
             // "Delete" from local storage:
             const removeTask = clickedElement.parentElement.innerText;
             const size = removeTask.length
-            divsOfTasks = arrayRemove(divsOfTasks, removeTask.slice(0, size - 11)); // "Delete Task".length === 11
+            console.log(removeTask.length); // TODO
+            console.log(removeTask); // TODO
+            console.log(removeTask.slice(0, size - 12)); // TODO
+            console.log(removeTask.slice(0, size - 12).length); // TODO
+            console.log(divsOfTasks); // TODO
+            divsOfTasks = arrayRemove(divsOfTasks, removeTask.slice(0, size - 12)); // "Delete Task".length === 11; +1 => 12
+            console.log(divsOfTasks); // TODO
             localStorage.setItem("divsOfTasks", JSON.stringify(divsOfTasks));
 
             // remove the task's div, which deletes the whole task:
