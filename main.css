@@ -8,25 +8,52 @@ h1 {
     text-align: center;
 }
 
+/* @keyframes hide {
+    0% {
+        opacity: 1;
+        padding-bottom: 10px; 
+        height: 75px;
+        margin-bottom: 10px;
+    }
+    50% {
+        opacity: 0;
+        padding-bottom: 10px; 
+        height: 75px;
+        margin-bottom: 10px;
+    }
+    100% {
+        opacity: 0;
+        padding-bottom: 0px; 
+        height: 0px;
+        margin-bottom: 0px;
+    }
+} */
+
 .task {
     margin: auto;
     width: 60%;
-    padding: 10px; 
+    padding: 10px;
+    padding-bottom: 10px; 
     height: 75px;
     margin-bottom: 10px;
     border-radius: 7px;
     box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    /* Hiding animation when task is deleted (completed). It is unpaused by event listerner */
+    /* animation-name: hide;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-play-state: paused; */
 }
 
 .delete {
     float: right;
-    margin-top: 30px;
-
-
+    margin-top: 35px;
+    margin-left: 10px;
     width: 50px;
     height: 50px;
     font-size: 13px;
     text-align: center;
+    border-color: rgba(0,0,0,0.06);
     border-radius: 7px;
     box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
 }
