@@ -35,10 +35,12 @@ h1 {
     width: 60%;
     padding: 10px;
     padding-bottom: 10px; 
-    height: 75px;
+    height: 30px;
     margin-bottom: 10px;
     border-radius: 7px;
     box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    line-height: 30px;
+    font-size: 20px;
     /* Hiding animation when task is deleted (completed). It is unpaused by event listerner */
     /* animation-name: hide;
     animation-duration: 2s;
@@ -48,11 +50,11 @@ h1 {
 
 .delete {
     float: right;
-    margin-top: 35px;
-    margin-left: 10px;
+    /* margin-top: 35px;
+    margin-left: 10px; */
     width: 50px;
-    height: 50px;
-    font-size: 13px;
+    height: 30px;
+    font-size: 10px;
     text-align: center;
     border-color: rgba(0,0,0,0.06);
     border-radius: 7px;
